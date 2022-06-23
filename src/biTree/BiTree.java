@@ -18,7 +18,7 @@ public class BiTree<T extends Comparable<T>> {
         if(noAtual == null){
             return noProximo;
         }else if(noProximo.getConteudo().compareTo(noAtual.getConteudo())<0){
-            noAtual.setNoEsquedo(inserir(noAtual.getNoEsquedo(), noProximo));
+            noAtual.setNoEsquerdo(inserir(noAtual.getNoEsquerdo(), noProximo));
         }else {
             noAtual.setNoDireito(inserir(noAtual.getNoDireito(), noProximo));
         }
@@ -34,7 +34,7 @@ public class BiTree<T extends Comparable<T>> {
 
     private void inOrdem(NoTree<T> noAtual){
         if(noAtual != null){
-            inOrdem(noAtual.getNoEsquedo());
+            inOrdem(noAtual.getNoEsquerdo());
             System.out.print(noAtual.getConteudo() + ", ");
             inOrdem(noAtual.getNoDireito());
         }
@@ -48,7 +48,7 @@ public class BiTree<T extends Comparable<T>> {
 
     private void posOrdem(NoTree<T> noAtual){
         if(noAtual != null){
-            posOrdem(noAtual.getNoEsquedo());
+            posOrdem(noAtual.getNoEsquerdo());
             posOrdem(noAtual.getNoDireito());
             System.out.print(noAtual.getConteudo() + ", ");
 
@@ -64,7 +64,7 @@ public class BiTree<T extends Comparable<T>> {
     private void preOrdem(NoTree<T> noAtual){
         if(noAtual != null){
             System.out.print(noAtual.getConteudo() + ", ");
-            preOrdem(noAtual.getNoEsquedo());
+            preOrdem(noAtual.getNoEsquerdo());
             preOrdem(noAtual.getNoDireito());
 
         }
@@ -82,7 +82,7 @@ public class BiTree<T extends Comparable<T>> {
                 noPai = noAtual;
 
                 if(comteudo.compareTo(noAtual.getConteudo())<0){
-                    noAtual = noAtual.getNoEsquedo();
+                    noAtual = noAtual.getNoEsquerdo();
                 }else{
                     noAtual = noAtual.getNoDireito();
                 }
@@ -94,17 +94,17 @@ public class BiTree<T extends Comparable<T>> {
 
             if(noPai == null){
                 if(noAtual.getNoDireito()==null){
-                    this.raiz = noAtual.getNoEsquedo();
-                }else if(noAtual.getNoEsquedo()==null){
+                    this.raiz = noAtual.getNoEsquerdo();
+                }else if(noAtual.getNoEsquerdo()==null){
                     this.raiz = noAtual.getNoDireito();
                 }else{
-                    for(noTemp = noAtual, noFilho = noAtual.getNoEsquedo();
+                    for(noTemp = noAtual, noFilho = noAtual.getNoEsquerdo();
                     noFilho.getNoDireito() != null;
-                    noTemp = noFilho, noFilho = noFilho.getNoEsquedo()){
+                    noTemp = noFilho, noFilho = noFilho.getNoEsquerdo()){
 
-                        if(noFilho != noAtual.getNoEsquedo()){
-                            noTemp.setNoDireito(noFilho.getNoEsquedo());
-                            noFilho.setNoEsquedo(raiz.getNoEsquedo());
+                        if(noFilho != noAtual.getNoEsquerdo()){
+                            noTemp.setNoDireito(noFilho.getNoEsquerdo());
+                            noFilho.setNoEsquerdo(raiz.getNoEsquerdo());
                         }
 
                     }
@@ -113,33 +113,33 @@ public class BiTree<T extends Comparable<T>> {
                 }
 
             }else if(noAtual.getNoDireito()==null){
-                if(noPai.getNoEsquedo() == noAtual){
-                    noPai.setNoEsquedo(noAtual.getNoEsquedo());
+                if(noPai.getNoEsquerdo() == noAtual){
+                    noPai.setNoEsquerdo(noAtual.getNoEsquerdo());
                 }else{
-                    noPai.setNoDireito(noAtual.getNoEsquedo());
+                    noPai.setNoDireito(noAtual.getNoEsquerdo());
                 }
 
-            }else if(noAtual.getNoEsquedo()==null){
-                if(noPai.getNoEsquedo() == noAtual){
-                    noPai.setNoEsquedo(noAtual.getNoDireito());
+            }else if(noAtual.getNoEsquerdo()==null){
+                if(noPai.getNoEsquerdo() == noAtual){
+                    noPai.setNoEsquerdo(noAtual.getNoDireito());
                 }else{
                     noPai.setNoDireito(noAtual.getNoDireito());
                 }
 
             }else{
-                for(noTemp =  noAtual,  noFilho= noAtual.getNoEsquedo();
+                for(noTemp =  noAtual,  noFilho= noAtual.getNoEsquerdo();
                     noFilho.getNoDireito() != null;
                     noTemp = noFilho, noFilho = noFilho.getNoDireito()){
 
-                    if(noFilho != noAtual.getNoEsquedo()){
-                        noTemp.setNoDireito(noFilho.getNoEsquedo());
-                        noFilho.setNoEsquedo(noAtual.getNoEsquedo());
+                    if(noFilho != noAtual.getNoEsquerdo()){
+                        noTemp.setNoDireito(noFilho.getNoEsquerdo());
+                        noFilho.setNoEsquerdo(noAtual.getNoEsquerdo());
                     }
 
                     noFilho.setNoDireito(noAtual.getNoDireito());
 
-                    if(noPai.getNoEsquedo() == noAtual){
-                        noPai.setNoEsquedo(noFilho);
+                    if(noPai.getNoEsquerdo() == noAtual){
+                        noPai.setNoEsquerdo(noFilho);
                     }else{
                         noPai.setNoDireito(noFilho);
                     }
@@ -154,5 +154,33 @@ public class BiTree<T extends Comparable<T>> {
 
     }
 
+    public T paiNo(T conteudo){
+        try{
+            NoTree noAtual = raiz;
+            NoTree noPai   = null;
+
+
+            while(noAtual != null && !noAtual.getConteudo().equals(conteudo)){
+                noPai = noAtual;
+
+                if(noAtual.getConteudo().compareTo(conteudo)>0){
+                    noAtual = noAtual.getNoEsquerdo();
+                }else{
+                    noAtual = noAtual.getNoDireito();
+                }
+            }
+
+            if(noAtual == null){
+                System.out.println("valor não encontrado");
+                return null;
+            }
+
+            return (T) noPai.getConteudo();
+
+        } catch (NullPointerException e) {
+            System.out.println("valor não encontrado.");
+            return null;
+        }
+    }
 
 }

@@ -4,14 +4,15 @@ package biTree;
 public class NoTree<T extends Comparable<T>> {
 
     private T conteudo;
-    private NoTree<T> noEsquedo;
+    private NoTree<T> noEsquerdo;
     private NoTree<T> noDireito;
 
     public NoTree(T conteudo) {
         this.conteudo = conteudo;
-        this.noEsquedo = null;
+        this.noEsquerdo = null;
         this.noDireito = null;
     }
+
 
     public T getConteudo() {
         return conteudo;
@@ -21,12 +22,12 @@ public class NoTree<T extends Comparable<T>> {
         this.conteudo = conteudo;
     }
 
-    public NoTree<T> getNoEsquedo() {
-        return noEsquedo;
+    public NoTree<T> getNoEsquerdo() {
+        return noEsquerdo;
     }
 
-    public void setNoEsquedo(NoTree<T> noEsquedo) {
-        this.noEsquedo = noEsquedo;
+    public void setNoEsquerdo(NoTree<T> noEsquedo) {
+        this.noEsquerdo = noEsquedo;
     }
 
     public NoTree<T> getNoDireito() {
