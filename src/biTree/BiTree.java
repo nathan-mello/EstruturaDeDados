@@ -127,9 +127,12 @@ public class BiTree<T extends Comparable<T>> {
                 }
 
             }else{
-                for(noTemp =  noAtual,  noFilho= noAtual.getNoEsquerdo();
+                for(
+                    noTemp =  noAtual,  noFilho= noAtual.getNoEsquerdo();
                     noFilho.getNoDireito() != null;
-                    noTemp = noFilho, noFilho = noFilho.getNoDireito()){
+                    noTemp = noFilho, noFilho = noFilho.getNoDireito()
+                ){
+
 
                     if(noFilho != noAtual.getNoEsquerdo()){
                         noTemp.setNoDireito(noFilho.getNoEsquerdo());
@@ -156,8 +159,8 @@ public class BiTree<T extends Comparable<T>> {
 
     public T paiNo(T conteudo){
         try{
-            NoTree noAtual = raiz;
-            NoTree noPai   = null;
+            NoTree<T> noAtual = raiz;
+            NoTree<T> noPai   = null;
 
 
             while(noAtual != null && !noAtual.getConteudo().equals(conteudo)){
@@ -173,9 +176,9 @@ public class BiTree<T extends Comparable<T>> {
             if(noAtual == null){
                 System.out.println("valor não encontrado");
                 return null;
+            }else{
+                return (T) noPai.getConteudo();
             }
-
-            return (T) noPai.getConteudo();
 
         } catch (NullPointerException e) {
             System.out.println("valor não encontrado.");
