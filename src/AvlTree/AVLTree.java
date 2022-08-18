@@ -1,6 +1,5 @@
 package AvlTree;
 
-
 public class AVLTree<T> {
     private NoAVL<T> raiz;
 
@@ -10,10 +9,6 @@ public class AVLTree<T> {
 
     public NoAVL<T> getRaiz() {
         return raiz;
-    }
-
-    public void setRaiz(NoAVL<T> raiz) {
-        this.raiz = raiz;
     }
 
     private boolean isEmpty(NoAVL<T> no){
@@ -60,7 +55,7 @@ public class AVLTree<T> {
     private void inOrdem(NoAVL<T> noRaiz){
         if(noRaiz != null){
             inOrdem(noRaiz.getNoEsquerdo());
-            System.out.print(noRaiz.toString());
+            System.out.print(noRaiz.getId() + " ");
             inOrdem(noRaiz.getNoDireito());
 
         }
@@ -75,7 +70,7 @@ public class AVLTree<T> {
         if(noRaiz != null){
             posOrdem(noRaiz.getNoEsquerdo());
             posOrdem(noRaiz.getNoDireito());
-            System.out.print(noRaiz.toString());
+            System.out.print(noRaiz.getId() + " ");
 
         }
     }
@@ -87,7 +82,7 @@ public class AVLTree<T> {
 
     private void preOrdem(NoAVL<T> noRaiz){
         if(noRaiz != null){
-            System.out.print(noRaiz.toString());
+            System.out.print(noRaiz.getId() + " ");
             preOrdem(noRaiz.getNoEsquerdo());
             preOrdem(noRaiz.getNoDireito());
         }
@@ -96,7 +91,11 @@ public class AVLTree<T> {
 
     // ------------------------------------------------------------------
 
-    public NoAVL<T> noMenor(NoAVL<T> subTree){
+    public NoAVL<T> noMenor(){
+        return noMenor(raiz);
+    }
+
+    private NoAVL<T> noMenor(NoAVL<T> subTree){
         NoAVL<T> menor = subTree;
 
         while(!isEmpty(subTree)){
@@ -107,8 +106,11 @@ public class AVLTree<T> {
         return menor;
     }
 
+    public NoAVL<T> noMaior(){
+        return noMaior(raiz);
+    }
 
-    public NoAVL<T> noMaior(NoAVL<T> subTree){
+    private NoAVL<T> noMaior(NoAVL<T> subTree){
         NoAVL<T> maior = subTree;
 
         while(!isEmpty(subTree)){
@@ -119,95 +121,40 @@ public class AVLTree<T> {
         return maior;
     }
 
-    public void removeID(int conteudo){
+    // ---------------------------------------------------------------------
 
-        try{
-            NoAVL<T> noAtual = raiz;
-            NoAVL<T> noPai = null;
-            NoAVL<T> noFilho;
-            NoAVL<T> notemporario;
+    public void removerID(int conteudo){
+        removerID(conteudo, raiz);
+    }
 
+    private NoAVL<T> removerID(int conteudo, NoAVL<T> subTree){
 
-            while(noAtual != null && noAtual.getId() != conteudo){
-                noPai = noAtual;
+        if(isEmpty(subTree)){
+            return null;
 
-                if(conteudo<noAtual.getId()){
-                    noAtual = noAtual.getNoEsquerdo();
-                }else{
-                    noAtual = noAtual.getNoDireito();
-                }
-            }
+        }else if(conteudo>subTree.getId()){
+            subTree.setNoDireito(removerID(conteudo, subTree.getNoDireito()));
 
-            if(noAtual == null){
-                System.out.println("valor não encontrado");
-            }
+        }else if(conteudo<subTree.getId()){
+            subTree.setNoEsquerdo(removerID(conteudo, subTree.getNoEsquerdo()));
+        }
+        else{
+            if(subTree.getNoEsquerdo() == null){
+                return subTree.getNoDireito();
 
-            if(noPai == null){
-                if(noAtual.getNoDireito()==null){
-                    this.raiz = noAtual.getNoEsquerdo();
-
-                }else if(noAtual.getNoEsquerdo()==null){
-                    this.raiz = noAtual.getNoDireito();
-
-                }else{
-                    for(notemporario = noAtual, noFilho = noAtual.getNoEsquerdo();
-                        noFilho.getNoDireito() != null;
-                        notemporario = noFilho, noFilho = noFilho.getNoEsquerdo()){
-
-                        if(noFilho != noAtual.getNoEsquerdo()){
-                            notemporario.setNoDireito(noFilho.getNoEsquerdo());
-                            noFilho.setNoEsquerdo(raiz.getNoEsquerdo());
-                        }
-
-                    }
-                    noFilho.setNoDireito(raiz.getNoDireito());
-                    raiz = noFilho;
-                }
-
-            }else if(noAtual.getNoDireito()==null){
-                if(noPai.getNoEsquerdo() == noAtual){
-                    noPai.setNoEsquerdo(noAtual.getNoEsquerdo());
-
-                }else{
-                    noPai.setNoDireito(noAtual.getNoEsquerdo());
-
-                }
-
-            }else if(noAtual.getNoEsquerdo()==null){
-                if(noPai.getNoEsquerdo() == noAtual){
-                    noPai.setNoEsquerdo(noAtual.getNoDireito());
-
-                }else{
-                    noPai.setNoDireito(noAtual.getNoDireito());
-
-                }
+            }else if(subTree.getNoDireito() == null){
+                return  subTree.getNoEsquerdo();
 
             }else{
-                for(notemporario =  noAtual,  noFilho= noAtual.getNoEsquerdo();
-                    noFilho.getNoDireito() != null;
-                    notemporario = noFilho, noFilho = noFilho.getNoDireito()){
+                NoAVL<T> noTemporario = noMenor(subTree.getNoDireito());
 
+                subTree.setId(noTemporario.getId());
+                subTree.setConteudo(noTemporario.getConteudo());
 
-                    if(noFilho != noAtual.getNoEsquerdo()){
-                        notemporario.setNoDireito(noFilho.getNoEsquerdo());
-                        noFilho.setNoEsquerdo(noAtual.getNoEsquerdo());
-                    }
-
-                    noFilho.setNoDireito(noAtual.getNoDireito());
-
-                    if(noPai.getNoEsquerdo() == noAtual){
-                        noPai.setNoEsquerdo(noFilho);
-                    }else{
-                        noPai.setNoDireito(noFilho);
-                    }
-                }
-
+                removerID(noTemporario.getId(), subTree.getNoDireito());
             }
-
-        } catch (NullPointerException e) {
-            System.out.println("valor não encontrado.");
         }
-
+        return subTree;
 
     }
 
