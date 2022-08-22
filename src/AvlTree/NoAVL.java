@@ -5,12 +5,14 @@ public class NoAVL<T> {
     private T conteudo;
     private NoAVL<T> noDireito;
     private NoAVL<T> noEsquerdo;
+    private int height;
 
     public NoAVL(int id, T conteudo) {
         this.id = id;
         this.conteudo = conteudo;
         this.noDireito = null;
         this.noEsquerdo = null;
+        this.height = 0;
     }
 
     public int getId() {
@@ -44,6 +46,23 @@ public class NoAVL<T> {
     public void setNoEsquerdo(NoAVL<T> noEsquerdo) {
         this.noEsquerdo = noEsquerdo;
     }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public void heightMore(){
+        this.height += 1;
+    }
+
+    public void heightLess(){
+        this.height -= 1;
+    }
+
 
     @Override
     public String toString() {

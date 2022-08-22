@@ -15,34 +15,105 @@ public class AVLTree<T> {
         return no == null;
     }
 
+
+    public int fatorB(NoAVL<T> subTree){
+        if(!isEmpty(subTree)){
+            NoAVL<T> left = subTree.getNoEsquerdo();
+            NoAVL<T> right = subTree.getNoEsquerdo();
+
+            int heightLeft = (isEmpty(left)) ? 0 : left.getHeight();
+            int heightRight = (isEmpty(right)) ? 0 : right.getHeight();
+
+            return heightLeft - heightRight;
+        }
+        return 0;
+    }
+
+    // ------------------------------------------------------
+
+    private NoAVL<T> leftRotation(NoAVL<T> subTree){
+        NoAVL<T> temp = subTree.getNoDireito();
+        subTree.setNoDireito(temp.getNoEsquerdo());
+
+        temp.setNoEsquerdo(subTree);
+
+        subTree.setHeight(Math.max(
+                subTree.getNoEsquerdo().getHeight(),
+                subTree.getNoDireito().getHeight()
+        ) + 1);
+
+        temp.setHeight(Math.max(
+                temp.getNoDireito().getHeight(),
+                temp.getNoEsquerdo().getHeight()
+        ) + 1);
+
+        return temp;
+
+    }
+
+    private NoAVL<T> rightRotation(NoAVL<T> subTree){
+        NoAVL<T> temp = subTree.getNoEsquerdo();
+        subTree.setNoEsquerdo(temp.getNoDireito());
+
+        temp.setNoDireito(subTree);
+
+        subTree.setHeight(Math.max(
+                subTree.getNoEsquerdo().getHeight(),
+                subTree.getNoDireito().getHeight()
+        ) + 1);
+
+        temp.setHeight(Math.max(
+                temp.getNoDireito().getHeight(),
+                temp.getNoEsquerdo().getHeight()
+        ) + 1);
+
+        return temp;
+
+    }
+
+    private NoAVL<T> doubleRotationLR(NoAVL<T> subTree){
+        subTree.setNoEsquerdo(leftRotation(subTree.getNoEsquerdo()));
+        return rightRotation(subTree);
+
+    }
+
+    private NoAVL<T> doubleRotationRL(NoAVL<T> subTree){
+        subTree.setNoDireito(rightRotation(subTree.getNoDireito()));
+        return leftRotation(subTree);
+    }
+
+
+    // ---------------------------------------------------------
+
     public void insert(T conteudo, int id) {
         NoAVL<T> no = new NoAVL<>(id, conteudo);
 
-        if(isEmpty(raiz)){
-            raiz = no;
-        }else{
-            insert(raiz, no);
-        }
-    }
-
-    private void insert(NoAVL<T> noRaiz, NoAVL<T> noAtual){
-        if(noAtual.getId()<noRaiz.getId()){
-            if(!isEmpty(noRaiz.getNoEsquerdo())){
-                insert(noRaiz.getNoEsquerdo(), noAtual);
-            }
-            else{
-                noRaiz.setNoEsquerdo(noAtual);
-            }
-        }else{
-            if(!isEmpty(noRaiz.getNoDireito())){
-                insert(noRaiz.getNoDireito(), noAtual);
-            }
-            else{
-                noRaiz.setNoDireito(noAtual);
-            }
-        }
+        raiz = insert(raiz, no);
 
     }
+
+    private NoAVL<T> insert(NoAVL<T> subTree, NoAVL<T> no){
+
+        if(isEmpty(subTree)){
+            return no;
+        }
+        else if(no.getId() < subTree.getId()){
+            subTree.setNoEsquerdo(insert(subTree.getNoEsquerdo(), no));
+            if(subTree.getHeight()<= subTree.getNoEsquerdo().getHeight()){
+                subTree.heightMore();
+            }
+        }else{
+
+            subTree.setNoDireito(insert(subTree.getNoDireito(), no));
+            if(subTree.getHeight()<= subTree.getNoDireito().getHeight()){
+                subTree.heightMore();
+            }
+        }
+        return subTree;
+
+    }
+
+
 
 
     //  ----------------------------------------------------------------
