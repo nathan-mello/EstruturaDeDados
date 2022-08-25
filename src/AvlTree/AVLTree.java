@@ -11,6 +11,11 @@ public class AVLTree<T> {
         return raiz;
     }
 
+    private int heightNo(NoAVL<T> subTree){
+        return (isEmpty(subTree)) ? -1 : subTree.getHeight();
+
+    }
+
     private boolean isEmpty(NoAVL<T> no){
         return no == null;
     }
@@ -18,15 +23,10 @@ public class AVLTree<T> {
 
     public int fatorB(NoAVL<T> subTree){
         if(!isEmpty(subTree)){
-            NoAVL<T> left = subTree.getNoEsquerdo();
-            NoAVL<T> right = subTree.getNoEsquerdo();
-
-            int heightLeft = (isEmpty(left)) ? 0 : left.getHeight();
-            int heightRight = (isEmpty(right)) ? 0 : right.getHeight();
-
-            return heightLeft - heightRight;
+            return heightNo(subTree.getNoEsquerdo())
+                    - heightNo(subTree.getNoDireito());
         }
-        return 0;
+        return -1;
     }
 
     // ------------------------------------------------------
@@ -38,13 +38,13 @@ public class AVLTree<T> {
         temp.setNoEsquerdo(subTree);
 
         subTree.setHeight(Math.max(
-                subTree.getNoEsquerdo().getHeight(),
-                subTree.getNoDireito().getHeight()
+                heightNo(subTree.getNoEsquerdo()),
+                heightNo(subTree.getNoDireito())
         ) + 1);
 
         temp.setHeight(Math.max(
-                temp.getNoDireito().getHeight(),
-                temp.getNoEsquerdo().getHeight()
+                heightNo(temp.getNoEsquerdo()),
+                heightNo(temp.getNoDireito())
         ) + 1);
 
         return temp;
@@ -58,13 +58,13 @@ public class AVLTree<T> {
         temp.setNoDireito(subTree);
 
         subTree.setHeight(Math.max(
-                subTree.getNoEsquerdo().getHeight(),
-                subTree.getNoDireito().getHeight()
+                heightNo(subTree.getNoEsquerdo()),
+                heightNo(subTree.getNoDireito())
         ) + 1);
 
         temp.setHeight(Math.max(
-                temp.getNoDireito().getHeight(),
-                temp.getNoEsquerdo().getHeight()
+                heightNo(temp.getNoEsquerdo()),
+                heightNo(temp.getNoDireito())
         ) + 1);
 
         return temp;
@@ -99,16 +99,36 @@ public class AVLTree<T> {
         }
         else if(no.getId() < subTree.getId()){
             subTree.setNoEsquerdo(insert(subTree.getNoEsquerdo(), no));
-            if(subTree.getHeight()<= subTree.getNoEsquerdo().getHeight()){
-                subTree.heightMore();
+
+
+            if(fatorB(subTree)>=2){
+                if(no.getId() < subTree.getNoEsquerdo().getId()){
+                    return rightRotation(subTree);
+                }else{
+                    return doubleRotationLR(subTree);
+                }
             }
+
         }else{
 
             subTree.setNoDireito(insert(subTree.getNoDireito(), no));
-            if(subTree.getHeight()<= subTree.getNoDireito().getHeight()){
-                subTree.heightMore();
+
+
+            if(fatorB(subTree) <= -2){
+                if(no.getId() > subTree.getNoDireito().getId()){
+                    return leftRotation(subTree);
+
+                }else{
+                    return doubleRotationRL(subTree);
+                }
             }
+
         }
+
+        subTree.setHeight(Math.max(
+                heightNo(subTree.getNoEsquerdo()),
+                heightNo(subTree.getNoDireito())) +1);
+
         return subTree;
 
     }
