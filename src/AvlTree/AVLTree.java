@@ -1,7 +1,5 @@
 package AvlTree;
 
-import grafos.No;
-
 public class AVLTree<T> {
     private NoAVL<T> raiz;
 
@@ -245,14 +243,13 @@ public class AVLTree<T> {
 
     }
 
-
     private NoAVL<T> removerID(int conteudo, NoAVL<T> subTree) {
 
 
         if (isEmpty(subTree)) {
             return null;
 
-        }else if(conteudo< subTree.getId()){
+        } else if (conteudo < subTree.getId()) {
             subTree.setNoEsquerdo(removerID(conteudo, subTree.getNoEsquerdo()));
 
             if (fatorB(subTree) >= 2) {
@@ -270,7 +267,7 @@ public class AVLTree<T> {
 
             }
 
-        }else if(conteudo> subTree.getId()){
+        } else if (conteudo > subTree.getId()) {
             subTree.setNoDireito(removerID(conteudo, subTree.getNoDireito()));
 
             if (fatorB(subTree) <= -2) {
@@ -288,8 +285,7 @@ public class AVLTree<T> {
                 }
 
             }
-        }else {
-            NoAVL<T> noRemovido = subTree;
+        } else {
             if (subTree.getNoEsquerdo() == null) {
                 return subTree.getNoDireito();
 
@@ -302,7 +298,8 @@ public class AVLTree<T> {
                 subTree.setId(noTemporario.getId());
                 subTree.setConteudo(noTemporario.getConteudo());
 
-                removerID(noTemporario.getId(), subTree.getNoDireito());
+                subTree.setNoDireito(removerID(noTemporario.getId(), subTree.getNoDireito()));
+
                 if (fatorB(subTree) <= -2) {
 
                     int heightRight = isEmpty(subTree.getNoDireito()) ?
@@ -316,10 +313,11 @@ public class AVLTree<T> {
                     } else {
                         doubleRotationLR(subTree);
                     }
+
                 }
             }
-            return noRemovido;
+
         }
-    return null;
+        return subTree;
     }
 }

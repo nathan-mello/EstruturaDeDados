@@ -55,14 +55,6 @@ public class NoAVL<T> {
         this.height = height;
     }
 
-    public void heightMore(){
-        this.height += 1;
-    }
-
-    public void heightLess(){
-        this.height -= 1;
-    }
-
 
     @Override
     public String toString() {
