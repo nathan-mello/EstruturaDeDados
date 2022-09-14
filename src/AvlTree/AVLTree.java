@@ -1,5 +1,7 @@
 package AvlTree;
 
+import grafos.No;
+
 public class AVLTree<T> {
     private NoAVL<T> raiz;
 
@@ -214,39 +216,110 @@ public class AVLTree<T> {
 
     // ---------------------------------------------------------------------
 
-    public void removerID(int conteudo){
-        removerID(conteudo, raiz);
+    public T removerID(int conteudo){
+
+        NoAVL<T> noRetorno = searchRemove(conteudo, raiz);
+
+        if(!isEmpty(searchRemove(conteudo, raiz))){
+            raiz = removerID(conteudo, raiz);
+            return noRetorno.getConteudo();
+        }
+        return null;
     }
 
-    private NoAVL<T> removerID(int conteudo, NoAVL<T> subTree){
-
+    public NoAVL<T> searchRemove(int conteudo, NoAVL<T> subTree){
         if(isEmpty(subTree)){
             return null;
+        }
+        if(conteudo == subTree.getId()){
+            return subTree;
 
-        }else if(conteudo>subTree.getId()){
+        }else{
+            if(conteudo< subTree.getId()){
+                return searchRemove(conteudo, subTree.getNoEsquerdo());
+            }else{
+                return searchRemove(conteudo, subTree.getNoDireito());
+            }
+
+        }
+
+    }
+
+
+    private NoAVL<T> removerID(int conteudo, NoAVL<T> subTree) {
+
+
+        if (isEmpty(subTree)) {
+            return null;
+
+        }else if(conteudo< subTree.getId()){
+            subTree.setNoEsquerdo(removerID(conteudo, subTree.getNoEsquerdo()));
+
+            if (fatorB(subTree) >= 2) {
+                int heightLeft = isEmpty(subTree.getNoDireito()) ?
+                        -1 : heightNo(subTree.getNoDireito().getNoEsquerdo());
+
+                int heightRight = isEmpty(subTree.getNoDireito()) ?
+                        -1 : heightNo(subTree.getNoDireito().getNoDireito());
+
+                if (heightLeft <= heightRight) {
+                    leftRotation(subTree);
+                } else {
+                    rightRotation(subTree);
+                }
+
+            }
+
+        }else if(conteudo> subTree.getId()){
             subTree.setNoDireito(removerID(conteudo, subTree.getNoDireito()));
 
-        }else if(conteudo<subTree.getId()){
-            subTree.setNoEsquerdo(removerID(conteudo, subTree.getNoEsquerdo()));
-        }
-        else{
-            if(subTree.getNoEsquerdo() == null){
+            if (fatorB(subTree) <= -2) {
+
+                int heightRight = isEmpty(subTree.getNoDireito()) ?
+                        -1 : heightNo(subTree.getNoEsquerdo().getNoDireito());
+
+                int heightLeft = isEmpty(subTree.getNoDireito()) ?
+                        -1 : heightNo(subTree.getNoEsquerdo().getNoEsquerdo());
+
+                if (heightRight <= heightLeft) {
+                    doubleRotationRL(subTree);
+                } else {
+                    doubleRotationLR(subTree);
+                }
+
+            }
+        }else {
+            NoAVL<T> noRemovido = subTree;
+            if (subTree.getNoEsquerdo() == null) {
                 return subTree.getNoDireito();
 
-            }else if(subTree.getNoDireito() == null){
-                return  subTree.getNoEsquerdo();
+            } else if (subTree.getNoDireito() == null) {
+                return subTree.getNoEsquerdo();
 
-            }else{
+            } else {
                 NoAVL<T> noTemporario = noMenor(subTree.getNoDireito());
 
                 subTree.setId(noTemporario.getId());
                 subTree.setConteudo(noTemporario.getConteudo());
 
                 removerID(noTemporario.getId(), subTree.getNoDireito());
+                if (fatorB(subTree) <= -2) {
+
+                    int heightRight = isEmpty(subTree.getNoDireito()) ?
+                            -1 : heightNo(subTree.getNoEsquerdo().getNoDireito());
+
+                    int heightLeft = isEmpty(subTree.getNoDireito()) ?
+                            -1 : heightNo(subTree.getNoEsquerdo().getNoEsquerdo());
+
+                    if (heightRight <= heightLeft) {
+                        doubleRotationRL(subTree);
+                    } else {
+                        doubleRotationLR(subTree);
+                    }
+                }
             }
+            return noRemovido;
         }
-        return subTree;
-
+    return null;
     }
-
 }
