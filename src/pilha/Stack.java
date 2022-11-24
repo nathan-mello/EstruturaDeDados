@@ -45,7 +45,7 @@ public class Stack {
             if(ref == null){
                 boo = false;
             } else{
-                str += "[No{dado=" + ref.getDado() + "}]\n";
+                str += "[NoVertice{dado=" + ref.getDado() + "}]\n";
                 ref = ref.getNo();
 
             }

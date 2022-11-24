@@ -27,13 +27,13 @@ public class No<T> {
 
     @Override
     public String toString() {
-        return "No{" +
+        return "NoVertice{" +
                 "conteudo=" + conteudo +
                 '}';
     }
 
     public String toStringNo(){
-        String str = "No{" +
+        String str = "NoVertice{" +
                 "conteudo=" + conteudo +
                 '}';
 

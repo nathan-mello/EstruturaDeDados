@@ -116,7 +116,7 @@ public class listaDuplamenteEncadeada<T>{
 
         for(int i = 0; i < size(); i++){
 
-            strRetorno+= "No{" + noAxiliar.getConteudo() + "}  >>  ";
+            strRetorno+= "NoVertice{" + noAxiliar.getConteudo() + "}  >>  ";
             noAxiliar = noAxiliar.getNextNo();
         }
 
