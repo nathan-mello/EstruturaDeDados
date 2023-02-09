@@ -1,31 +1,31 @@
 package fila;
 
 public class Queue<T> {
-    private NoFila<T> refNoInput;
+    private NoQueue<T> refNoInput;
 
     public Queue(){
         this.refNoInput = null;
     }
 
-    public boolean isEmpty(){
-        return refNoInput == null;
+    public boolean isNotEmpty(){
+        return refNoInput != null;
     }
 
     public void enqueue(T obj){
-        NoFila<T> novoNo = new NoFila<T>(obj);
-        novoNo.setRefNo(refNoInput);
+        NoQueue<T> novoNo = new NoQueue<>(obj);
+        novoNo.setNextNo(refNoInput);
         refNoInput = novoNo;
 
     }
 
     public T first(){
-        if(!this.isEmpty()){
-            NoFila<T> firstNo = refNoInput;
+        if(this.isNotEmpty()){
+            NoQueue<T> firstNo = refNoInput;
 
             boolean con = true;
             while(con){
-                if(firstNo.getRefNo()!=null){
-                    firstNo = firstNo.getRefNo();
+                if(firstNo.getNextNo()!=null){
+                    firstNo = firstNo.getNextNo();
                 }else{
                     con = false;
                 }
@@ -38,24 +38,24 @@ public class Queue<T> {
 
     public T dequeue(){
 
-        if(!this.isEmpty()){
-            NoFila<T> secondNo = refNoInput;
-            NoFila<T> firstNo = refNoInput;
+        if(this.isNotEmpty()){
+            NoQueue<T> secondNo = refNoInput;
+            NoQueue<T> firstNo = refNoInput;
 
             boolean con = true;
             while(con){
-                if(firstNo.getRefNo()!=null){
+                if(firstNo.getNextNo()!=null){
                     secondNo = firstNo;
-                    firstNo = firstNo.getRefNo();
+                    firstNo = firstNo.getNextNo();
                 }else{
                     con = false;
 
-                    if(refNoInput.getRefNo() == null){
+                    if(refNoInput.getNextNo() == null){
                         refNoInput = null;
                         return null;
                     }
 
-                    secondNo.setRefNo(null);
+                    secondNo.setNextNo(null);
 
 
                 }
@@ -68,27 +68,26 @@ public class Queue<T> {
 
     @Override
     public String toString() {
-        String str = "--------------\n";
+        StringBuilder str = new StringBuilder("--------------\n");
 
         if(refNoInput != null){
 
             boolean boo = true;
-            NoFila<T> no = refNoInput;
+            NoQueue<T> no = refNoInput;
 
             while(boo){
-                str += "[ " +  no.getObject() + "] -----> ";
-                if(no.getRefNo() != null){
-                    no = no.getRefNo();
+                str.append("[ ").append(no.getObject()).append("] -----> ");
+                if(no.getNextNo() != null){
+                    no = no.getNextNo();
                 } else {
-                    str += "null\n";
+                    str.append("null\n");
                     boo = false;
                 }
             }
 
-            return str;
         }else{
-            str += "null";
-            return str;
+            str.append("null");
         }
+        return str.toString();
     }
 }

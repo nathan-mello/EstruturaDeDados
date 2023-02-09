@@ -1,7 +1,7 @@
 package pilha;
 
-public class Stack {
-    NoPilha topo;
+public class Stack<T> {
+    NoStack<T> topo;
 
     public Stack(){
         this.topo = null;
@@ -12,19 +12,19 @@ public class Stack {
         return topo == null;
     }
 
-    public NoPilha top(){
+    public NoStack<T> top(){
         return topo;
     }
 
-    public void push(NoPilha novoNo){
-        NoPilha referencia = topo;
+    public void push(NoStack<T> novoNo){
+        NoStack<T> referencia = topo;
         topo = novoNo;
         novoNo.setNo(referencia);
     }
 
-    public NoPilha pop(){
+    public NoStack<T> pop(){
         if(!this.isEmpty()){
-            NoPilha referencia = topo;
+            NoStack<T> referencia = topo;
             topo = referencia.getNo();
             return referencia;
 
@@ -34,25 +34,25 @@ public class Stack {
 
     @Override
     public String toString(){
-        String str = "------------\n" +
-                      "Pilha\n"        +
-                      "------------\n";
+        StringBuilder str = new StringBuilder("------------\n" +
+                "Pilha\n" +
+                "------------\n");
 
         boolean boo = true;
-        NoPilha ref = topo;
+        NoStack<T> ref = topo;
 
         while(boo){
             if(ref == null){
                 boo = false;
             } else{
-                str += "[NoVertice{dado=" + ref.getDado() + "}]\n";
+                str.append("[NoVertice{dado=").append(ref.getDado()).append("}]\n");
                 ref = ref.getNo();
 
             }
 
         }
-        str += "-------------\n";
-        return str;
+        str.append("-------------\n");
+        return str.toString();
 
     }
 }

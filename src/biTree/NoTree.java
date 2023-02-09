@@ -3,43 +3,43 @@ package biTree;
 
 public class NoTree<T extends Comparable<T>> {
 
-    private T conteudo;
-    private NoTree<T> noEsquerdo;
-    private NoTree<T> noDireito;
+    private T object;
+    private NoTree<T> noLeft;
+    private NoTree<T> noRight;
 
-    public NoTree(T conteudo) {
-        this.conteudo = conteudo;
-        this.noEsquerdo = null;
-        this.noDireito = null;
+    public NoTree(T object) {
+        this.object = object;
+        this.noLeft = null;
+        this.noRight = null;
     }
 
 
-    public T getConteudo() {
-        return conteudo;
+    public T getObject() {
+        return object;
     }
 
-    public void setConteudo(T conteudo) {
-        this.conteudo = conteudo;
+    public void setObject(T object) {
+        this.object = object;
     }
 
-    public NoTree<T> getNoEsquerdo() {
-        return noEsquerdo;
+    public NoTree<T> getNoLeft() {
+        return noLeft;
     }
 
-    public void setNoEsquerdo(NoTree<T> noEsquedo) {
-        this.noEsquerdo = noEsquedo;
+    public void setNoLeft(NoTree<T> noLeft) {
+        this.noLeft = noLeft;
     }
 
-    public NoTree<T> getNoDireito() {
-        return noDireito;
+    public NoTree<T> getNoRight() {
+        return noRight;
     }
 
-    public void setNoDireito(NoTree<T> noDireito) {
-        this.noDireito = noDireito;
+    public void setNoRight(NoTree<T> noRight) {
+        this.noRight = noRight;
     }
 
     @Override
     public String toString() {
-        return "" + conteudo;
+        return "" + object;
     }
 }

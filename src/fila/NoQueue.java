@@ -1,12 +1,12 @@
 package fila;
 
-public class NoFila<T> {
+public class NoQueue<T> {
     private T object;
-    private NoFila<T> refNo;
+    private NoQueue<T> nextNo;
 
-    public NoFila(T object) {
+    public NoQueue(T object) {
         this.object = object;
-        this.refNo = null;
+        this.nextNo = null;
     }
 
     public T getObject() {
@@ -17,17 +17,17 @@ public class NoFila<T> {
         this.object = object;
     }
 
-    public NoFila<T> getRefNo() {
-        return refNo;
+    public NoQueue<T> getNextNo() {
+        return nextNo;
     }
 
-    public void setRefNo(NoFila<T> refNo) {
-        this.refNo = refNo;
+    public void setNextNo(NoQueue<T> nextNo) {
+        this.nextNo = nextNo;
     }
 
     @Override
     public String toString() {
-        return "NoFila{" +
+        return "NoQueue{" +
                 "object= " + object +
                 '}';
     }

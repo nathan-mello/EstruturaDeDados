@@ -2,16 +2,16 @@ package AvlTree;
 
 public class NoAVL<T> {
     private int id;
-    private T conteudo;
-    private NoAVL<T> noDireito;
-    private NoAVL<T> noEsquerdo;
+    private T object;
+    private NoAVL<T> noRight;
+    private NoAVL<T> noLeft;
     private int height;
 
-    public NoAVL(int id, T conteudo) {
+    public NoAVL(int id, T object) {
         this.id = id;
-        this.conteudo = conteudo;
-        this.noDireito = null;
-        this.noEsquerdo = null;
+        this.object = object;
+        this.noRight = null;
+        this.noLeft = null;
         this.height = 0;
     }
 
@@ -23,28 +23,28 @@ public class NoAVL<T> {
         this.id = id;
     }
 
-    public T getConteudo() {
-        return conteudo;
+    public T getObject() {
+        return object;
     }
 
-    public void setConteudo(T conteudo) {
-        this.conteudo = conteudo;
+    public void setObject(T object) {
+        this.object = object;
     }
 
-    public NoAVL<T> getNoDireito() {
-        return noDireito;
+    public NoAVL<T> getNoRight() {
+        return noRight;
     }
 
-    public void setNoDireito(NoAVL<T> noDireito) {
-        this.noDireito = noDireito;
+    public void setNoRight(NoAVL<T> noRight) {
+        this.noRight = noRight;
     }
 
-    public NoAVL<T> getNoEsquerdo() {
-        return noEsquerdo;
+    public NoAVL<T> getNoLeft() {
+        return noLeft;
     }
 
-    public void setNoEsquerdo(NoAVL<T> noEsquerdo) {
-        this.noEsquerdo = noEsquerdo;
+    public void setNoLeft(NoAVL<T> noLeft) {
+        this.noLeft = noLeft;
     }
 
     public int getHeight() {
@@ -58,6 +58,6 @@ public class NoAVL<T> {
 
     @Override
     public String toString() {
-        return "no{ "+ id + ", "+ conteudo +" }";
+        return "no{ "+ id + ", "+ object +" }";
     }
 }
