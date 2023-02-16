@@ -1,4 +1,4 @@
-package listasEncadeadas;
+package list;
 
 public class LinkedList<T>{
     private NoLinkedList<T> firstNo;

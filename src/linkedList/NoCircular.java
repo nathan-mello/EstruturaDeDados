@@ -1,4 +1,4 @@
-package circularList;
+package linkedList;
 
 public class NoCircular<T> {
     private T conteudo;

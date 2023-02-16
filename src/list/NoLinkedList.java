@@ -1,4 +1,4 @@
-package listasEncadeadas;
+package list;
 
 public class NoLinkedList<T> {
     private T dado;

@@ -1,4 +1,4 @@
-package listasDuplamenteEncadeadas;
+package doubleList;
 
 public class NoDouble<T> {
     private T dado;

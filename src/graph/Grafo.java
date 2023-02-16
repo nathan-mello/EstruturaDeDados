@@ -1,4 +1,4 @@
-package grafos;
+package graph;
 
 import java.util.*;
 
@@ -105,10 +105,10 @@ public class Grafo {
     }
 
     public String menorCaminho(NoVertice inicio, NoVertice fim){
-        String returno = "";
+        StringBuilder returno = new StringBuilder();
         boolean controle = true;
         while(!isEmpity(fim) && controle ){
-            returno += "[ " + fim.getNome() + " : " + fim.getEstimativaDePeso() + " ]";
+            returno.append("[ ").append(fim.getNome()).append(" : ").append(fim.getEstimativaDePeso()).append(" ]");
             fim = fim.getAnterior();
 
             if(inicio.equals(fim)){
@@ -117,23 +117,23 @@ public class Grafo {
 
 
         }
-        returno += "[ " + fim.getNome() + " : " + fim.getEstimativaDePeso() + " ]";
-        return returno;
+        returno.append("[ ").append(fim.getNome()).append(" : ").append(fim.getEstimativaDePeso()).append(" ]");
+        return returno.toString();
     }
 
     @Override
     public String toString() {
-        String retorno = "";
-        String cont = "";
+        StringBuilder retorno = new StringBuilder();
+        String cont;
         for (NoVertice no: vertices) {
             if(no.getAnterior() == null){
                 cont = "null";
             }else{
                 cont = no.getAnterior().getNome();
             }
-            retorno += no.getNome() + " | " + cont + " | " + no.getEstimativaDePeso() + "\n";
+            retorno.append(no.getNome()).append(" | ").append(cont).append(" | ").append(no.getEstimativaDePeso()).append("\n");
 
         }
-        return retorno;
+        return retorno.toString();
     }
 }

@@ -1,4 +1,4 @@
-package pilha;
+package stack;
 
 public class Stack<T> {
     NoStack<T> topo;
@@ -16,7 +16,8 @@ public class Stack<T> {
         return topo;
     }
 
-    public void push(NoStack<T> novoNo){
+    public void push(T object){
+        NoStack<T> novoNo = new NoStack<>(object);
         NoStack<T> referencia = topo;
         topo = novoNo;
         novoNo.setNo(referencia);

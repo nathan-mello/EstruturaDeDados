@@ -1,4 +1,4 @@
-package grafos;
+package graph;
 
 public class NoAresta {
     NoVertice inicio;

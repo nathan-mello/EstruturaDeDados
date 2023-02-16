@@ -1,4 +1,4 @@
-package pilha;
+package stack;
 
 public class NoStack<T> {
     private T dado;

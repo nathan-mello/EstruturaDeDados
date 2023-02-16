@@ -1,4 +1,4 @@
-package circularList;
+package linkedList;
 
 public class CircularList<T> {
 
@@ -87,16 +87,16 @@ public class CircularList<T> {
     @Override
     public String toString() {
 
-        String str = "CircularList{ ";
+        StringBuilder str = new StringBuilder("CircularList{ ");
 
         NoCircular<T> noAuxiliar = this.trail;
         for(int i=0; i<tamanhoList; i++){
-            str += noAuxiliar.getConteudo().toString() + " --> ";
+            str.append(noAuxiliar.getConteudo().toString()).append(" --> ");
             noAuxiliar = noAuxiliar.getNextNo();
         }
 
-        str += this.isEmpty() ? "(retorno ao inicio)" : "()";
+        str.append(this.isEmpty() ? "(retorno ao inicio)" : "()");
 
-        return str;
+        return str.toString();
     }
 }

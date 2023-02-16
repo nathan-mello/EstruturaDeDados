@@ -1,4 +1,4 @@
-package listasDuplamenteEncadeadas;
+package doubleList;
 
 public class DoubleLinkedList<T>{
 
@@ -32,7 +32,7 @@ public class DoubleLinkedList<T>{
         this.previous = previous;
     }
 
-    public NoDouble<T> getNo(int index){
+    private NoDouble<T> getNo(int index){
         NoDouble<T> noAuxiliar = next;
 
         for(int i = 0; (i < index && (noAuxiliar != null)); i ++){

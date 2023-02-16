@@ -1,4 +1,4 @@
-package fila;
+package queue;
 
 public class NoQueue<T> {
     private T object;
