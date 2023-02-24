@@ -1,7 +1,7 @@
 package stack;
 
 public class NoStack<T> {
-    private T dado;
+    private final T dado;
     private NoStack<T> noStack;
 
     public NoStack(T dado) {
@@ -13,9 +13,6 @@ public class NoStack<T> {
         return dado;
     }
 
-    public void setDado(T dado) {
-        this.dado = dado;
-    }
 
     public NoStack<T> getNo() {
         return noStack;
@@ -27,7 +24,7 @@ public class NoStack<T> {
 
     @Override
     public String toString() {
-        return "NoLinkedList(" +
+        return "NoStack(" +
                  dado.toString() +
                 ") ";
     }

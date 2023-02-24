@@ -12,9 +12,9 @@ public class Queue<T> {
     }
 
     public void enqueue(T obj){
-        NoQueue<T> novoNo = new NoQueue<>(obj);
-        novoNo.setNextNo(refNoInput);
-        refNoInput = novoNo;
+        NoQueue<T> newNo = new NoQueue<>(obj);
+        newNo.setNextNo(refNoInput);
+        refNoInput = newNo;
 
     }
 
@@ -76,7 +76,7 @@ public class Queue<T> {
             NoQueue<T> no = refNoInput;
 
             while(boo){
-                str.append("[ ").append(no.getObject()).append("] -----> ");
+                str.append(no).append("] -----> ");
                 if(no.getNextNo() != null){
                     no = no.getNextNo();
                 } else {

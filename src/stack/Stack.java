@@ -1,33 +1,33 @@
 package stack;
 
 public class Stack<T> {
-    NoStack<T> topo;
+    private  NoStack<T> top;
 
     public Stack(){
-        this.topo = null;
+        this.top = null;
 
     }
 
     public boolean isEmpty(){
-        return topo == null;
+        return top == null;
     }
 
-    public NoStack<T> top(){
-        return topo;
+    public T topStack(){
+        return top.getDado();
     }
 
     public void push(T object){
-        NoStack<T> novoNo = new NoStack<>(object);
-        NoStack<T> referencia = topo;
-        topo = novoNo;
-        novoNo.setNo(referencia);
+        NoStack<T> newNo = new NoStack<>(object);
+        NoStack<T> reference = top;
+        top = newNo;
+        newNo.setNo(reference);
     }
 
-    public NoStack<T> pop(){
+    public T pop(){
         if(!this.isEmpty()){
-            NoStack<T> referencia = topo;
-            topo = referencia.getNo();
-            return referencia;
+            NoStack<T> reference = top;
+            top = reference.getNo();
+            return reference.getDado();
 
         }
         return null;
@@ -36,17 +36,17 @@ public class Stack<T> {
     @Override
     public String toString(){
         StringBuilder str = new StringBuilder("------------\n" +
-                "Pilha\n" +
+                "Stack\n" +
                 "------------\n");
 
         boolean boo = true;
-        NoStack<T> ref = topo;
+        NoStack<T> ref = top;
 
         while(boo){
             if(ref == null){
                 boo = false;
             } else{
-                str.append("[NoVertice{dado=").append(ref.getDado()).append("}]\n");
+                str.append(ref).append("\n");
                 ref = ref.getNo();
 
             }

@@ -28,7 +28,7 @@ public class NoQueue<T> {
     @Override
     public String toString() {
         return "NoQueue{" +
-                "object= " + object +
+                 object +
                 '}';
     }
 }
