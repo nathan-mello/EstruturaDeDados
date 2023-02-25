@@ -120,6 +120,8 @@ Segundo Cormen, 2012; Uma estrutura de dados é um modo de armazenar e organizar
 
 ### Status do Projeto
 
+🚧 Em construção... 🚧
+
 ### Autor
 
 Feito por Nathan Mello!
@@ -127,6 +129,8 @@ Feito por Nathan Mello!
 [![Linkedin Badge](https://img.shields.io/badge/Linkedin-Nathan%20Mello-blue)](https://www.linkedin.com/in/nathanll/) [![Gmail Badge](https://img.shields.io/badge/Gmail-Nathan%20Mello-red)](mailto:nathansalesmello@gmail.com)
 
 ### Licença
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ### Referencias
 
