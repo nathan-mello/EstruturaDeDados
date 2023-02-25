@@ -21,8 +21,6 @@
       
    * [Status do Projeto](#status-do-projeto)
 
-   * [Tecnologias](#tecnologias)
-
 * [Autor](#autor)
 
 * [Licença](#licença)
@@ -38,15 +36,23 @@ Segundo Cormen, 2012; Uma estrutura de dados é um modo de armazenar e organizar
 
 ### Fila(Queue)
 
-- first() - retorna o conteúdo do  primeiro Nó da fila
+Filas são estruturas de dados dinâmicas que segue a política de primeiro a entrar é o primeiro a sair **FiFo (first-in first-out)**, tendo um início ou "cabeça" e por um fim ou "calda". Quando adiciona-se um novo objeto a fila ele assume a posição final "calda" e sempre remove o objeto do início da final.
 
-- enQueue(T obj) -cria e adiciona um novo Nó na fila
+#### métodos
 
-- dequeue() - remove o primeiro Nó da fila  e retorna o seu conteúdo
+- first() - retorna o conteúdo do  primeiro Nó da fila;
 
-- toString() - retorna uma string com a ordem da fila e seu conteúdo
+- enQueue(T obj) -cria e adiciona um novo Nó na fila;
+
+- dequeue() - remove o primeiro Nó da fila  e retorna o seu conteúdo;
+
+- toString() - retorna uma string com a ordem da fila e seu conteúdo.
 
 ### Pilha(Stack)
+
+Diferentemente da fila, a pilha segue a política de último a entra é o primeiro a sair **LiFo (last-in frist-out)**.
+
+#### métodos
 
 - isEmpty() - retorna True se a pilha esta vazia e False se não estiver
 - top() - retorna o topo da pilha
@@ -55,6 +61,8 @@ Segundo Cormen, 2012; Uma estrutura de dados é um modo de armazenar e organizar
 - toString() - retorna uma string com a ordem da fila e seu conteúdo
 
 ### Lista Encadeada(LinkedList)
+
+#### métodos
 
 - size() - retorna o tamanho da lista
 
@@ -72,6 +80,8 @@ Segundo Cormen, 2012; Uma estrutura de dados é um modo de armazenar e organizar
 
 ### Lista Duplamente Encadeada(doublyLinkedList)
 
+#### métodos
+
 - size() - retorna o tamanho da lista
 
 - get(int index) - retorna o conteúdo de um Nó a partir de um index
@@ -87,6 +97,8 @@ Segundo Cormen, 2012; Uma estrutura de dados é um modo de armazenar e organizar
   
 
 ### Lista Circular(RingBuffer)
+
+#### métodos
 
 
   - size() - retorna o tamanho da lista
