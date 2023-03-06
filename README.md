@@ -34,15 +34,15 @@ Uma estrutura de dados é um modo de armazenar e organizar dados com o objetivo 
 
 **Lineares** são organizadas de forma sequencial/linear e tem apenas um nível, ou seja, cada nó tem a referência para o próximo até null. E a ordem depende da inserção ou deleção. Exemplos: Filas, Pilhas e listas.
 
-
-
-<img src="C:\Users\natha\Downloads\Diagrama sem nome.drawio (1).png" alt="70" style="zoom:80%;" />
+<img src="..\EstruturaDeDados\Diagrama sem nome.drawio (1).png" style="zoom:80%;" />
 
 
 
 **Não lineares** são formadas por vários níveis, onde os nós ou vértices podem tem várias referencias. Exemplos: Árvores e Grafos.
 
-<img src="C:\Users\natha\Downloads\Diagrama sem nome.drawio.png" alt="8" style="zoom:50%;" />
+<img src="..\EstruturaDeDados\Diagrama sem nome.drawio.png" style="zoom:70%;" />
+
+
 
 **homogêneas**: só aceita um tipo de dados.
 
@@ -113,17 +113,17 @@ inserindo(obj){
                     PrimeiroNo = PrimeiroNo.proximoNo();
                 }SeNao{
                     verdade = false;
-    
+        
                     Se(noReferencia.proximoNo() == null){
                         noReferencia = null;
                         retorno null;
                     }
-    
+        
                     Segundo.setProximoNo(null);
                 }
             }
             retorno PrimeiroNo;
-    
+        
         }
         retorno null;
     }
