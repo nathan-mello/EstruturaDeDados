@@ -1,4 +1,4 @@
-package list;
+package LinkedList;
 
 public class NoLinkedList<T> {
     private T dado;

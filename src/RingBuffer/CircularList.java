@@ -1,4 +1,4 @@
-package linkedList;
+package RingBuffer;
 
 public class CircularList<T> {
 

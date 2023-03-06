@@ -1,4 +1,4 @@
-package list;
+package LinkedList;
 
 public class LinkedList<T>{
     private NoLinkedList<T> firstNo;

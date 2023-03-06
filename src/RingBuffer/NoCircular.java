@@ -1,4 +1,4 @@
-package linkedList;
+package RingBuffer;
 
 public class NoCircular<T> {
     private T conteudo;

@@ -1,4 +1,4 @@
-package doubleList;
+package doublyLinkedList;
 
 public class NoDouble<T> {
     private T dado;
