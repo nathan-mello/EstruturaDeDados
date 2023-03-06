@@ -34,13 +34,13 @@ Uma estrutura de dados é um modo de armazenar e organizar dados com o objetivo 
 
 **Lineares** são organizadas de forma sequencial/linear e tem apenas um nível, ou seja, cada nó tem a referência para o próximo até null. E a ordem depende da inserção ou deleção. Exemplos: Filas, Pilhas e listas.
 
-<img src="..\EstruturaDeDados\Diagrama sem nome.drawio (1).png" style="zoom:80%;" />
+<img src="..\Diagrama sem nome.drawio (1).png" style="zoom:80%;" />
 
 
 
 **Não lineares** são formadas por vários níveis, onde os nós ou vértices podem tem várias referencias. Exemplos: Árvores e Grafos.
 
-<img src="..\EstruturaDeDados\Diagrama sem nome.drawio.png" style="zoom:70%;" />
+<img src="..\Diagrama sem nome.drawio.png" style="zoom:70%;" />
 
 
 
