@@ -11,8 +11,8 @@
       * [Fila(Queue)](##fila(queue))
       * [Pilha(Stack)](##pilha(Stack))
       * [Lista Encadeada(LinkedList)](##lista-encadeada(LinkedList))
-      * [Lista Duplamente Encadeada(DoublyLinkedList)](##lista-duplamente-encadeada(doublyLinkedList))
-      * [Lista Circular(doublyLinkedList)](##lista-circular(RingBuffer))
+      * [Lista Duplamente Encadeada(DoublyLinkedList)](##Lista-Duplamente-Encadeada(DoublyLinkedList))
+      * [Lista Circular(RingBuffer)](##lista-circular(RingBuffer))
       * [Grafo(Graph)](##Grafo(Graph))
       * [Árvore Binária(BiTree)](##árvore-binária(BiTree))
       * [Árvore AVL(AvlTree)](##árvore-AVL(AvlTree))
@@ -30,15 +30,15 @@
 
 ## Estruturas de dados
 
-Uma estrutura de dados é um modo de armazenar e organizar dados com o objetivo de facilitar acesso e modificações. Nenhuma estrutura de dados única funciona bem para todas as finalidades e, por isso, é importante conhecer os pontos fortes e as limitações de várias delas (Cormen, 2012). E podem ser classificadas como lineares e não lineares; homogêneas e heterogêneas; estáticas e dinâmicas.
+Estrutura de dados é um modo de armazenar e organizar dados de forma eficiente e com um objetivo específico. É um conceito fundamental na ciência da computação, pois fornece uma maneira de manipular, armazenar e buscar informações de forma mais eficiente. As estruturas de dados podem ser classificadas em várias categorias, como lineares, não lineares, homogêneas, heterogêneas, estáticas e dinâmicas, e cada uma possui suas próprias características e usos específicos. As principais estruturas de dados incluem filas, pilhas, listas encadeadas, árvores e grafos.
 
-**Lineares** são organizadas de forma sequencial/linear e tem apenas um nível, ou seja, cada nó tem a referência para o próximo até null. E a ordem depende da inserção ou deleção. Exemplos: Filas, Pilhas e listas.
+**Lineares** são organizadas de forma sequencial/linear onde os elementos tem uma relação de um-a-um, ou seja, cada nó tem a referência para o próximo até null. E a ordem depende da inserção ou deleção. As principais estruturas de dados lineares são  Filas, Pilhas e listas.
 
 <img src=".\Diagrama sem nome.drawio (1).png" style="zoom:80%;" />
 
 
 
-**Não lineares** são formadas por vários níveis, onde os nós ou vértices podem tem várias referencias. Exemplos: Árvores e Grafos.
+**Estruturas de dados não lineares** não têm uma relação um-a-um entre os elementos. Em vez disso, elas são organizadas hierarquicamente ou de forma ramificada. Alguns exemplos de estruturas de dados não lineares incluem árvores, grafos, tabelas hash e conjuntos. Essas estruturas de dados são usadas para armazenar e organizar dados complexos e relacionamentos entre dados.
 
 <img src=".\Diagrama sem nome.drawio.png" style="zoom:70%;" />
 
@@ -58,7 +58,7 @@ Uma estrutura de dados é um modo de armazenar e organizar dados com o objetivo 
 
 ### Fila(Queue)
 
-**Filas** são estruturas de dados dinâmicas e lineares que segue a política de primeiro a entrar é o primeiro a sair **FiFo (first-in first-out)**, tendo um início ou "cabeça" e por um fim ou "calda". Quando adiciona-se um novo objeto a fila ele assume a posição final "calda" e sempre remove o objeto do início da final.
+**Filas** são estruturas de dados dinâmicas e lineares que seguem a política de "primeiro a entrar é o primeiro a sair" (FiFo - First-In-First-Out). Essa estrutura de dados é composta por um conjunto de elementos, onde cada elemento é adicionado no final da fila e removido do início da fila. O primeiro elemento que entra na fila é também o primeiro a sair, e o último elemento que entra na fila é também o último a sair. As filas são usadas em situações onde é necessário manter a ordem de chegada dos elementos.
 
 #### métodos e pseudocódigo 
 
@@ -101,37 +101,39 @@ inserindo(obj){
 
 - dequeue() - remove o primeiro Nó da fila  e retorna o seu conteúdo;
 
+    ```pseudocode
     excluindo(){
         Se(FilaNaoVazia()){
             No SegundoNo = noReferencia;
             No PrimeiroNo = noReferencia;
-    
             boolean verdade = true;
             Se(verdade){
-                if(PrimeiroNo.proximoNo()!=null){
+                Se(PrimeiroNo.proximoNo()!=null){
                     SegundoNo = PrimeiroNo;
                     PrimeiroNo = PrimeiroNo.proximoNo();
                 }SeNao{
                     verdade = false;
-        
+    
                     Se(noReferencia.proximoNo() == null){
                         noReferencia = null;
                         retorno null;
                     }
-        
+    
                     Segundo.setProximoNo(null);
                 }
             }
             retorno PrimeiroNo;
-        
+    
         }
         retorno null;
     }
+    ```
+    
 
 
 ### Pilha(Stack)
 
-**Pilhas** são estruturas de dados dinâmicas e lineares; Diferentemente da fila, a pilha segue a política de último a entra é o primeiro a sair **LiFo (last-in frist-out)**.
+**pilha** é uma estrutura de dados linear que segue o princípio LIFO (Last In, First Out), o que significa que o último elemento adicionado à pilha é o primeiro a ser removido. A pilha é um tipo de coleção que suporta duas operações principais: empilhar (push), que adiciona um elemento ao topo da pilha, e desempilhar (pop), que remove e retorna o elemento no topo da pilha. Além disso, a pilha também pode suportar outras operações, como verificar o elemento no topo da pilha (top) e verificar se a pilha está vazia (empty). As pilhas são frequentemente utilizadas em algoritmos que exigem rastreamento da ordem em que as operações foram realizadas, como por exemplo, ao desfazer ações em um editor de texto.
 
 #### métodos e pseudocódigo 
 
@@ -166,7 +168,7 @@ adicionar(obj){
 
 ### Lista Encadeada(LinkedList)
 
-**lista encadeadas** são Estrutura de dados lineares e dinâmicas, que são composta por várias células que estão interligadas através de referências, ou seja, cada célula possui um ponteiro que aponta para a próxima célula. Isso faz com que a estrutura se torne dinâmica, pois há qualquer momento, é possível alocar uma nova célula e mudar as referências das células já existentes.
+**Listas encadeadas** são estruturas de dados dinâmicas, onde cada elemento da lista é representado por um nó que contém dois campos: o primeiro armazena o dado e o segundo é uma referência que aponta para o próximo nó da lista. A principal vantagem de usar uma lista encadeada é que ela permite a remoção e a inserção de elementos em qualquer posição da lista de maneira eficiente. Assim o tamanho das listas pode ser facilmente alterado durante a execução do programa sem a necessidade de realocação de memória.
 
 #### métodos e pseudocódigo 
 
@@ -262,9 +264,9 @@ remove(index){
 
 
 
-### Lista Duplamente Encadeada(RingBuffer)
+### Lista Duplamente Encadeada(doublyLinkedList)
 
-**Lista duplamente encadeada** é uma variação da lista encadeada, a diferença entre as duas e que a lista duplamente encadeada os Nós são formados por duas referências: uma para o próximo Nó e uma para o Nó Anterior.  
+A lista duplamente Encadeada é uma variação da lista encadeada, onde cada Nó tem a referência para o próximo no da lista e  para o Nó anterior, o que permite percorre a lista do primeiro elemento ao último, e em sentido contrário, do último elemento para o primeiro. 
 
 #### métodos
 
@@ -391,9 +393,9 @@ remove(int index){
 
 
 
-### Lista Circular(doublyLinkedList)
+### Lista Circular(RingBuffer)
 
-Outra Variação da lista encadeada é a **Lista Circular**, onde o último Nó tem uma referência para o primeiro formando loop infinito.
+Outra Variação da lista encadeada é a **Lista Circular**, onde cada elemento possui um referência para o próximo elemento, e o último elemento da lista aponta para o primeiro elemento, formando assim um circuito fechado. Uma das principais vantagens da lista circular é que ela permite a implementação eficiente de estruturas circulares, como filas circulares e buffers circulares, sem a necessidade de copiar elementos entre as extremidades da lista. Além disso, como a lista circular não possui um fim definido, ela pode ser percorrida indefinidamente sem nunca chegar a um ponto final.
 
 #### métodos e pseudocódigo 
 
@@ -495,6 +497,8 @@ add(conteudo){
 
 ### Árvore AVL(AvlTree)
 
+## Implementação das principais estrutura de dados
+
 
 
 ### Status do Projeto
@@ -513,7 +517,8 @@ Feito por Nathan Mello!
 
 ### Referencias
 
-- Cormen, Thomas; Algoritmos: teoria e prática. 3 ed. Rio de Janeiro: Elsevier, 2012.
+- Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein. *Algoritmos: Teoria e Prática.* 3a edição. Elsevier, 2012. 
+- Aguilar, Luis Joyanes.  Fundamentos de programação:  algoritmos, estruturas de dados e objetos. 3a edição. AMGH, 2011.
 
 
 
